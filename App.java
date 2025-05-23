@@ -71,5 +71,24 @@ public class App {
         return leaveBalance;
     }
 }
+    public class SalaryCalculator {
+    public double calculateNetSalary(Employee employee) {
+        return employee.getSalary();
+    }
+
+        public double calculateSalary(Employee employee) {
+        return employee.getSalary();
+    }
+
+        public String generatePayrollReport(Employee employee) {
+        return "Payroll Report for " + employee.getDetails();
+    }
+
+        public String applyLeaveDeduction(Employee employee, int leaveDays) {
+        double dailyRate = employee.getSalary() / 30;
+        double deduction = dailyRate * leaveDays;
+        return "Leave deduction of $" + deduction + " applied.";
+    }
+}
 
 }
