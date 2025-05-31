@@ -1,0 +1,106 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.employeesystem;
+
+/**
+ *
+ * @author katri
+ */
+public class Employee extends User {
+    public int empNumber;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String position;
+    private boolean isActive;
+    private String phoneNumber;
+    private String email;
+    private double allowances;
+    private double deductions;
+    private double baseSalary;
+    
+    private Leave leave;
+    private LeaveBalance leaveBalance;
+    
+    public Employee(int empNumber, String username, String password, String firstName, String lastName,
+            String address, String position, boolean isActive, String phoneNumber, String email,
+            double baseSalary, double allowances, double deductions) {
+        this.empNumber = empNumber;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.position = position;
+        this.isActive = isActive;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.baseSalary = baseSalary;
+        this.allowances = allowances;
+        this.deductions = deductions;
+        this.leave = new Leave();
+        this.leaveBalance = new LeaveBalance();
+        
+    }
+    
+    public String getDetails() {
+        return "Employee #" + empNumber + ": " + firstName + " " + lastName
+                + " | Position: " + position + " | Email: " + email
+                + " | Phone: " + phoneNumber + " | Active: " + isActive;
+    }
+
+    public String updateDetails(String newAddress) {
+        this.address = newAddress;
+        return "Address updated to: " + newAddress;
+    }
+
+    public String displayProfile() {
+        return getDetails();
+    }
+
+    public double getSalary() {
+        return baseSalary + allowances - deductions;
+    }
+
+    public double getAllowances() {
+        return allowances;
+    }
+
+    public double getDeductions() {
+        return deductions;
+    }
+
+    public Leave requestLeave() {
+        return leave;
+    }
+
+    public Employee.LeaveBalance getLeaveBalance() {
+        return leaveBalance;
+        
+    }
+    
+    class LeaveBalance {
+        double sickDays = 10.0;
+        double vacationDays = 10.0;
+
+        public String deductDays(double days, String type) {
+            if (type.equalsIgnoreCase("sick") && sickDays >= days) {
+                sickDays -= days;
+                return days + " sick leave days deducted. Remaining: " + sickDays;
+            } else if (type.equalsIgnoreCase("vacation") && vacationDays >= days) {
+                vacationDays -= days;
+                return days + " vacation leave days deducted. Remaining: " + vacationDays;
+            } else {
+                return "Insufficient leave balance.";
+            }
+        }    
+    }
+        
+        
+        
+        
+        
+        
+}
