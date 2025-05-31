@@ -1,0 +1,57 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.employeesystem;
+
+/**
+ *
+ * @author katri
+ */
+public class MainApp {
+    public static void main(String[] args) {
+
+        Employee employee = new Employee(
+                1001,
+                "kibe",
+                "password123",
+                "Katrin",
+                "Ibe",
+                "136 Kalye Pogi",
+                "Developer",
+                true,
+                "1234-5678",
+                "kibe@mmdc.mcl.edu.com",
+                5000.00,
+                500.00,
+                200.00
+       );
+        
+        HR hr = new HR("hruser", "adminpass", "HR001");
+        System.out.println("Employee Profile:");
+        System.out.println(hr.viewEmployee(employee).displayProfile());
+        
+        System.out.println("\nUpdating address...");
+        System.out.println(hr.updateEmployeeDetails(employee, "143 Kalye Pogi"));
+        
+        Payroll payroll = new Payroll();
+        System.out.println("\n" + payroll.generatePayrollReport(employee));
+        
+        System.out.println("\nApplying leave deduction...");
+        System.out.println(payroll.applyLeaveDeduction(employee, 2));
+        
+        AuthenticationService auth = new AuthenticationService();
+        boolean isAuthenticated = auth.authenticate("kibe", "password123", employee);
+        System.out.println("\nAuthentication successful? " + isAuthenticated);
+        
+         if (isAuthenticated) {
+            System.out.println("Generated Token: " + auth.generateToken());
+         }
+    }     
+
+       
+         
+        
+                
+        
+}
